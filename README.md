@@ -47,15 +47,7 @@ plt.show()
 
 
 ```python
-import networkx as nx
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
-
-# Load GA graph and display 
-GA = nx.read_gexf('ga_graph.gexf')
-plt.figure(3,figsize=(9,5)) 
-nx.draw(GA, with_labels=True)
-plt.show()
+# Code here
 ```
 
 
@@ -71,7 +63,7 @@ GA.degree("grey")
 
 
 ```python
-GA.degree("grey")
+# Code here
 ```
 
 
@@ -90,8 +82,7 @@ print(GA.degree())
 
 
 ```python
-# Get degree for whole network
-print(GA.degree())
+# Code here
 ```
 
     [('lexi', 3), ('susan grey', 1), ('denny', 1), ('ben', 1), ('finn', 1), ('adele', 1), ('yang', 3), ('ellis grey', 2), ('arizona', 1), ('addison', 3), ("o'malley", 4), ('thatch grey', 2), ('altman', 2), ('tucker', 1), ('karev', 7), ('hank', 1), ('mrs. seabury', 1), ('owen', 2), ('kepner', 1), ('grey', 4), ('bailey', 2), ('olivia', 2), ('torres', 4), ('steve', 1), ('nancy', 1), ('colin', 1), ('derek', 2), ('izzie', 4), ('chief', 2), ('sloan', 5), ('avery', 1), ('preston', 1)]
@@ -105,8 +96,7 @@ sorted(GA.degree(), key=lambda x:x[1], reverse=True)[:5]
 
 
 ```python
-# Here's the top 5.
-sorted(GA.degree(), key=lambda x:x[1], reverse=True)[:5]
+# Code here
 ```
 
 
@@ -145,15 +135,7 @@ print("Calculated degree centrality for Grey:", degree_centrality_grey)
 
 
 ```python
-# Degree for the 'Grey' node
-degree_grey = GA.degree("grey")  # 4 romantic partners
-
-# Total number of nodes (excluding Grey) 
-total_nodes_minus_grey = len(GA.nodes())-1  # 31 characters in the cast, excluding Grey
-
-# Degree centrality for Grey
-degree_centrality_grey = (degree_grey / total_nodes_minus_grey)
-print("Calculated degree centrality for Grey:", degree_centrality_grey)
+# Code here
 ```
 
     Calculated degree centrality for Grey: 0.12903225806451613
@@ -168,8 +150,7 @@ print("Networkx degree centrality for Grey:", nx.degree_centrality(GA)["grey"])
 
 
 ```python
-# Degree Centrality in networkx
-print("Networkx degree centrality for Grey:", nx.degree_centrality(GA)["grey"])
+# Code here
 ```
 
     Networkx degree centrality for Grey: 0.12903225806451613
@@ -185,9 +166,7 @@ print(degree_centrality)
 
 
 ```python
-# Degree Centrality for all characters
-degree_centrality = nx.degree_centrality(GA)
-print(degree_centrality)
+# Code here
 ```
 
     {'lexi': 0.0967741935483871, 'susan grey': 0.03225806451612903, 'denny': 0.03225806451612903, 'ben': 0.03225806451612903, 'finn': 0.03225806451612903, 'adele': 0.03225806451612903, 'yang': 0.0967741935483871, 'ellis grey': 0.06451612903225806, 'arizona': 0.03225806451612903, 'addison': 0.0967741935483871, "o'malley": 0.12903225806451613, 'thatch grey': 0.06451612903225806, 'altman': 0.06451612903225806, 'tucker': 0.03225806451612903, 'karev': 0.22580645161290322, 'hank': 0.03225806451612903, 'mrs. seabury': 0.03225806451612903, 'owen': 0.06451612903225806, 'kepner': 0.03225806451612903, 'grey': 0.12903225806451613, 'bailey': 0.06451612903225806, 'olivia': 0.06451612903225806, 'torres': 0.12903225806451613, 'steve': 0.03225806451612903, 'nancy': 0.03225806451612903, 'colin': 0.03225806451612903, 'derek': 0.06451612903225806, 'izzie': 0.12903225806451613, 'chief': 0.06451612903225806, 'sloan': 0.16129032258064516, 'avery': 0.03225806451612903, 'preston': 0.03225806451612903}
@@ -203,8 +182,7 @@ sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
 
 
 ```python
-# Top 5. Percent of cast
-sorted(degree_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
+# Code here
 ```
 
 
@@ -230,11 +208,7 @@ GA.node['karev']
 
 
 ```python
-# apply measurements back to Graph
-for k, v in degree_centrality.items():
-#     GA.add_node(k)
-    GA.node[k]['degree_centrality'] = v
-GA.node['karev']
+# Code here
 ```
 
 
@@ -272,9 +246,7 @@ grey_shortest_path
 
 
 ```python
-# Shortest path between Grey and other characters
-grey_shortest_path = dict(nx.shortest_path_length(GA))['grey']
-grey_shortest_path
+# Code here
 ```
 
 
@@ -320,12 +292,7 @@ print("Calculated closeness centrality for Grey:", closeness_centrality_grey)
 
 
 ```python
-# Sum of the shortest paths to all other characters
-grey_sum_shortest_path = sum(grey_shortest_path.values()) 
-
-# Closeness centrality for Grey
-closeness_centrality_grey = (total_nodes_minus_grey / grey_sum_shortest_path)
-print("Calculated Closeness centrality for Grey:", closeness_centrality_grey)
+# Code here
 ```
 
     Calculated Closeness centrality for Grey: 0.4025974025974026
@@ -340,8 +307,7 @@ print("Networkx closeness centrality for Grey:", nx.closeness_centrality(GA)["gr
 
 
 ```python
-# Closeness centrality with networkx
-print("Networkx closeness centrality for Grey:", nx.closeness_centrality(GA)["grey"])
+# Code here
 ```
 
     Networkx closeness centrality for Grey: 0.2216170925848345
@@ -355,8 +321,7 @@ This mismatch is because of the character relationship graph is not fully connec
 
 
 ```python
-# View members of different subgraphs
-sorted(nx.connected_components(GA), key = len, reverse=True)
+# Code here
 ```
 
 
@@ -413,21 +378,7 @@ print("Networkx closeness centrality for Grey:", nx.closeness_centrality(GA)["gr
 
 
 ```python
-# Number of nodes in Grey subgraph, excluding Grey
-total_nodes_minus_grey_sub = len(grey_shortest_path)-1  
-
-# Closeness centrality for Grey (unnormalized)
-closeness_centrality_grey = (total_nodes_minus_grey_sub / grey_sum_shortest_path) 
-print("Calculated closeness centrality for Grey (Un-normalized):", closeness_centrality_grey)
-
-# Closeness centrality for Grey (normalized)
-closeness_centrality_grey_normalized = closeness_centrality_grey * (total_nodes_minus_grey_sub/total_nodes_minus_grey)
-print("Calculated closeness centrality for Grey (normalized):", closeness_centrality_grey_normalized)
-
-# In networkx
-print("Networkx closeness centrality for Grey:", nx.closeness_centrality(GA)["grey"])
-
-
+# Code here
 ```
 
     Calculated closeness centrality for Grey (Un-normalized): 0.2987012987012987
@@ -444,8 +395,7 @@ sorted(nx.closeness_centrality(GA).items(), key=lambda x: x[1], reverse=True)[:5
 
 
 ```python
-# Calculate closeness for all cast and pick top 5
-sorted(nx.closeness_centrality(GA).items(), key=lambda x: x[1], reverse=True)[:5]
+# Code here
 ```
 
 
@@ -472,10 +422,7 @@ for k, v in closeness_centrality.items():
 
 
 ```python
-# apply measurements back to Graph
-for k, v in closeness_centrality.items():
-#     GA.add_node(k)
-    GA.node[k]['closeness_centrality'] = v
+# Code here
 ```
 
 We can measure the nearness and/or farness from this attribute as we explained earlier.
@@ -487,8 +434,7 @@ We can measure the nearness and/or farness from this attribute as we explained e
 
 
 ```python
-# average distance of torres:
-1 / closeness_centrality['torres']
+# Code here
 ```
 
 
@@ -527,9 +473,7 @@ betweeness_centrality
 
 
 ```python
-# Calculate the betweenness centrality 
-betweeness_centrality = nx.betweenness_centrality(GA)
-betweeness_centrality
+# Code here
 ```
 
 
@@ -579,8 +523,7 @@ sorted(betweeness_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
 
 
 ```python
-# get top 5 wrt betweenness
-sorted(betweeness_centrality.items(), key=lambda x: x[1], reverse=True)[:5]
+# Code here
 ```
 
 
@@ -608,12 +551,7 @@ GA.node['karev']
 
 
 ```python
-# apply measurements back to Graph
-for k, v in betweeness_centrality.items():
-    GA.node[k]['betweeness_centrality'] = v
-# Check the graph so far 
-GA.node['karev']    
-
+# Code here
 ```
 
 
@@ -642,9 +580,7 @@ eigenvector_centrality
 
 
 ```python
-# Calculate eigenvector centrality for GA
-eigenvector_centrality = nx.eigenvector_centrality_numpy(GA)
-eigenvector_centrality
+# Code here
 ```
 
 
@@ -697,11 +633,7 @@ GA.node['karev']
 
 
 ```python
-# apply measurements back to Graph
-for k, v in eigenvector_centrality.items():
-    GA.node[k]['eigenvector_centrallity'] = v
-# Check the graph so far 
-GA.node['karev']    
+# Code here  
 ```
 
 
@@ -731,14 +663,7 @@ sorted(ec_scaled.items(), key=lambda x:x[1], reverse=True)[0:5]
 
 
 ```python
-# Calculate the character with highest eigenvector value
-max_value = max(eigenvector_centrality.items(), key=lambda x: x[1])
-
-# Scale by the most central character (karev) and return top 5 
-ec_scaled = {}
-for k in eigenvector_centrality.keys():
-    ec_scaled[k] = eigenvector_centrality[k] / max_value[1]
-sorted(ec_scaled.items(), key=lambda x:x[1], reverse=True)[0:5]
+# Code here
 ```
 
 
