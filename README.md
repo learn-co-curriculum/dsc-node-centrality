@@ -1,5 +1,5 @@
 
-# Graph Dynamics: Node Centrality 
+# Network Dynamics: Node Centrality 
 
 ## Introduction
 
