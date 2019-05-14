@@ -22,7 +22,7 @@ The notion of centrality helps us identify Which nodes are most 'central' in a g
 
 The **degree** of a node is the number of other nodes to which it is connected. 
 
-<img src="degree.jpg" width=600>
+<img src="images/degree.jpg" width=600>
 
 NetworkX's degree centrality is calculated by taking the degree of the node and dividing by `n-1` where where `n` is the number of nodes in `G`.
 
@@ -221,7 +221,7 @@ GA.node['karev']
 ## Closeness Centrality
 Closeness Centrality measures how many "hops" a node would take to reach **every other node** in a network (taking the shortest path). It can be informally thought as 'average distance' to all other nodes. This "Far-ness" is then transformed into "nearness" as the reciprocal of farness.  That is, nearness = one divided by farness.  "Nearness" can be further standardized by norming against the minimum possible nearness for a graph of the same size and connection.
 
-<img src="close.png" width = 500>
+<img src="images/close.png" width = 500>
 
 Closeness is the reciporical of of the *average* value, which normalizes the value in a 0 to 1 range. 
 
@@ -313,7 +313,7 @@ print("Networkx closeness centrality for Grey:", nx.closeness_centrality(GA)["gr
     Networkx closeness centrality for Grey: 0.2216170925848345
 
 
-<img src="what.jpg" width=300>
+<img src="images/what.jpg" width=300>
 
 These dont match. What really happened ?
 
@@ -452,7 +452,7 @@ $$ C_B(v) =\sum_{s,t \in V} \frac{\sigma(s, t|v)}{\sigma(s, t)} $$
 
 where ${\sigma(s, t)}$ is total number of shortest paths from node ${s}$ to node ${t}$ and ${\sigma(s, t|v)}$ is the number of those paths that pass through ${v}$ as shown in the example below:
 
-<img src="between.jpg" width=600>
+<img src="images/between.jpg" width=600>
 
 __Why is betweeness centrality important?__
 
@@ -568,7 +568,7 @@ GA.node['karev']
 
 A node is high in eigenvector centrality if it is connected to many other nodes who are themselves well connected. Eigenvector centrality for each node is simply calculated as the proportional eigenvector values of the eigenvector with the largest eigenvalue. Following image shows you a quick comparison between degree and eigenvector centrality. Here node A is connected to more well connected nodes than B and hence shows a higher Eigenvector centrality, although the degree of B is higher than A. 
 
-<img src="eigen.png" width=300>
+<img src="images/eigen.png" width=300>
 
 [Visit here to get a deep dive in the underlying maths](https://www.geeksforgeeks.org/eigenvector-centrality-centrality-measure/), which involves some matrix algebra. We shall use networkx's built in method to calculate this for now. 
 
@@ -683,6 +683,6 @@ sorted(ec_scaled.items(), key=lambda x:x[1], reverse=True)[0:5]
 - http://www.faculty.ucr.edu/~hanneman/nettext/C10_Centrality.html#paths
 
 ## Summary
-<img src="cen.png" width = 600>
+<img src="images/cen.png" width = 600>
 
 In this lesson, we looked at a number of centrality measures with calculations and how to measure tthem in networkx. We also learned to store these as network node attributes which can be used for later analysis. Next we shall see a problem centred around the issue of centrality. 
