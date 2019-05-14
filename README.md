@@ -76,7 +76,7 @@ print(nx.closeness_centrality(G, 86))
 
 ## Betweeness Centrality
 
-
+Rather then simply looking at the distance between nodes, betweeness centrality investigates whether a node is a key stepping stone in moving between nodes. More specifically, betweeness investigates the number of shortest paths that a node lies on. To calculate betweeness, you must first calculate the shortest path between all node pairs using Dijkstra's algorithm. From there, one counts the number of paths from this output that the node in question lies on. Finally, this number is then normalized to be on a scale from 0 to 1. In other words, in order to compute betweeness for a single node, one must count the number of shortest paths each node lies on. The normalization from 0 to 1 involves subtracting the minimum number of paths any node in the network lies on and dividing by the maximum number of paths any node lies on.
 
 
 ```python
@@ -92,14 +92,21 @@ print(nx.betweenness_centrality(G)[86])
 
 ## Eigenvector Centrality
 
-
-
-## Page Rank
-
+Eigenvector centrality is an iterative algorithm that attempts to measure a nodes relative influence in the network. The underlying motivation is that degree centrality can be refined to incorporate the relative importance of neighboring nodes. In other words, a connection to a central node is more important then a connection to an isolated one. As with the previous measures of centrality, NetworkX makes calculting the eigenvector centrality quite easy.
 
 
 ```python
+nx.eigenvector_centrality(G)
+# The eigenvector Metric for a central node
+print(nx.eigenvector_centrality(G)[4])
+#The eigenvector Metric for an ostracized node
+print(nx.eigenvector_centrality(G)[86])
+```
+
+    0.028875860204350325
+    2.505996464597042e-27
+
+
 ## Summary
 
-In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four 
-```
+In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweeness and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
