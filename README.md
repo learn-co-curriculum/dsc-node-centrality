@@ -107,6 +107,265 @@ print(nx.eigenvector_centrality(G)[86])
     2.505996464597042e-27
 
 
+## Putting it All Together
+
+With that, let's investigate some of these measures for the twitter network displayed above. To do this, take a look at a few different types of nodes in the network based on their relationship to the overall group. How would you expect the centrality metrics would compare between some of these various groups?
+
+<img src="images/node_examples.png">
+
+
+```python
+import pandas as pd
+
+degrees = nx.degree_centrality(G)
+closeness = nx.closeness_centrality(G)
+betweeness = nx.betweenness_centrality(G)
+eigs = nx.eigenvector_centrality(G)
+df = pd.DataFrame([degrees, closeness, betweeness, eigs]).transpose()
+df.columns = ["degrees", "closeness", "betweeness", "eigs"]
+#Some Nodes to Investigate
+islanders = [86,87]
+penisulas = [51,92,98,95]
+bridges = [52,96]
+periphial = [57,97]
+centers = [74,3,20]
+temp = {"islanders":islanders,
+       "penisulas":penisulas,
+       "bridges":bridges,
+       "periphial":periphial,
+       "centers":centers}
+node_label_dict = {}
+for label in temp.keys():
+    nodes = temp[label]
+    for node in nodes:
+        node_label_dict[node]=label
+ex_nodes = islanders + penisulas + bridges + periphial + centers
+df['group'] = df.index.map(node_label_dict)
+df.iloc[ex_nodes]
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>degrees</th>
+      <th>closeness</th>
+      <th>betweeness</th>
+      <th>eigs</th>
+      <th>group</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>86</th>
+      <td>0.010204</td>
+      <td>0.010204</td>
+      <td>0.000000</td>
+      <td>2.505996e-27</td>
+      <td>islanders</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>0.010204</td>
+      <td>0.010204</td>
+      <td>0.000000</td>
+      <td>2.505996e-27</td>
+      <td>islanders</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>0.010204</td>
+      <td>0.271794</td>
+      <td>0.000000</td>
+      <td>2.311366e-03</td>
+      <td>penisulas</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>0.010204</td>
+      <td>0.271794</td>
+      <td>0.000000</td>
+      <td>2.311366e-03</td>
+      <td>penisulas</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.010204</td>
+      <td>0.271794</td>
+      <td>0.000000</td>
+      <td>2.311366e-03</td>
+      <td>penisulas</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>0.010204</td>
+      <td>0.245537</td>
+      <td>0.000000</td>
+      <td>1.181819e-03</td>
+      <td>penisulas</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>0.051020</td>
+      <td>0.374665</td>
+      <td>0.059331</td>
+      <td>2.715085e-02</td>
+      <td>bridges</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>0.010204</td>
+      <td>0.304339</td>
+      <td>0.000000</td>
+      <td>8.021756e-03</td>
+      <td>bridges</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>0.051020</td>
+      <td>0.318782</td>
+      <td>0.001811</td>
+      <td>7.223395e-02</td>
+      <td>periphial</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.020408</td>
+      <td>0.320958</td>
+      <td>0.000326</td>
+      <td>2.937446e-02</td>
+      <td>periphial</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>0.153061</td>
+      <td>0.452119</td>
+      <td>0.054725</td>
+      <td>1.593317e-01</td>
+      <td>centers</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.102041</td>
+      <td>0.400174</td>
+      <td>0.013053</td>
+      <td>1.024298e-01</td>
+      <td>centers</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.265306</td>
+      <td>0.508329</td>
+      <td>0.146951</td>
+      <td>2.782426e-01</td>
+      <td>centers</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+df.groupby('group').mean()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>degrees</th>
+      <th>closeness</th>
+      <th>betweeness</th>
+      <th>eigs</th>
+    </tr>
+    <tr>
+      <th>group</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>bridges</th>
+      <td>0.030612</td>
+      <td>0.339502</td>
+      <td>0.029665</td>
+      <td>1.758630e-02</td>
+    </tr>
+    <tr>
+      <th>centers</th>
+      <td>0.173469</td>
+      <td>0.453541</td>
+      <td>0.071576</td>
+      <td>1.800014e-01</td>
+    </tr>
+    <tr>
+      <th>islanders</th>
+      <td>0.010204</td>
+      <td>0.010204</td>
+      <td>0.000000</td>
+      <td>2.505996e-27</td>
+    </tr>
+    <tr>
+      <th>penisulas</th>
+      <td>0.010204</td>
+      <td>0.265230</td>
+      <td>0.000000</td>
+      <td>2.028979e-03</td>
+    </tr>
+    <tr>
+      <th>periphial</th>
+      <td>0.035714</td>
+      <td>0.319870</td>
+      <td>0.001069</td>
+      <td>5.080421e-02</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+As you can see, the central nodes have the highest measures of centrality across the board. Interestingly, the "bridge" nodes, which connect some outside nodes to the center have a fairly high level of betweeness due to their importance in maintaining this intermediate relationship. Additionally, of the center nodes, node 20 appears to be particularly influential given its exceedingly large betweeness centrality.
+
 ## Summary
 
 In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweeness and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
