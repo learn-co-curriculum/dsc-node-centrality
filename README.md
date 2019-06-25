@@ -38,7 +38,7 @@ nx.draw(G, pos=nx.spring_layout(G, random_state=5), with_labels=True,
 ```
 
 
-![png](index_files/index_4_0.png)
+![png](index_files/index_2_0.png)
 
 
 ## Degree Centrality 
@@ -74,9 +74,9 @@ print(nx.closeness_centrality(G, 86))
     0.01020408163265306
 
 
-## Betweeness Centrality
+## Betweenness Centrality
 
-Rather then simply looking at the distance between nodes, betweeness centrality investigates whether a node is a key stepping stone in moving between nodes. More specifically, betweeness investigates the number of shortest paths that a node lies on. To calculate betweeness, you must first calculate the shortest path between all node pairs using Dijkstra's algorithm. From there, one counts the number of paths from this output that the node in question lies on. Finally, this number is then normalized to be on a scale from 0 to 1. In other words, in order to compute betweeness for a single node, one must count the number of shortest paths each node lies on. The normalization from 0 to 1 involves subtracting the minimum number of paths any node in the network lies on and dividing by the maximum number of paths any node lies on.
+Rather then simply looking at the distance between nodes, betweenness centrality investigates whether a node is a key stepping stone in moving between nodes. More specifically, betweenness investigates the number of shortest paths that a node lies on. To calculate betweenness, you must first calculate the shortest path between all node pairs using Dijkstra's algorithm. From there, one counts the number of paths from this output that the node in question lies on. Finally, this number is then normalized to be on a scale from 0 to 1. In other words, in order to compute betweenness for a single node, one must count the number of shortest paths each node lies on. The normalization from 0 to 1 involves subtracting the minimum number of paths any node in the network lies on and dividing by the maximum number of paths any node lies on.
 
 
 ```python
@@ -92,7 +92,7 @@ print(nx.betweenness_centrality(G)[86])
 
 ## Eigenvector Centrality
 
-Eigenvector centrality is an iterative algorithm that attempts to measure a nodes relative influence in the network. The underlying motivation is that degree centrality can be refined to incorporate the relative importance of neighboring nodes. In other words, a connection to a central node is more important then a connection to an isolated one. As with the previous measures of centrality, NetworkX makes calculting the eigenvector centrality quite easy.
+Eigenvector centrality is an iterative algorithm that attempts to measure a nodes relative influence in the network. The underlying motivation is that degree centrality can be refined to incorporate the relative importance of neighboring nodes. In other words, a connection to a central node is more important then a connection to an isolated one. As with the previous measures of centrality, NetworkX makes calculating the eigenvector centrality quite easy.
 
 
 ```python
@@ -364,8 +364,8 @@ df.groupby('group').mean()
 
 
 
-As you can see, the central nodes have the highest measures of centrality across the board. Interestingly, the "bridge" nodes, which connect some outside nodes to the center have a fairly high level of betweeness due to their importance in maintaining this intermediate relationship. Additionally, of the center nodes, node 20 appears to be particularly influential given its exceedingly large betweeness centrality.
+As you can see, the central nodes have the highest measures of centrality across the board. Interestingly, the "bridge" nodes, which connect some outside nodes to the center have a fairly high level of betweenness due to their importance in maintaining this intermediate relationship. Additionally, of the center nodes, node 20 appears to be particularly influential given its exceedingly large betweenness centrality.
 
 ## Summary
 
-In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweeness and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
+In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweenness and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
