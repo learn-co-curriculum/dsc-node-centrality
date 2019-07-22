@@ -109,7 +109,7 @@ print(nx.eigenvector_centrality(G)[86])
 
 ## Putting it All Together
 
-With that, let's investigate some of these measures for the twitter network displayed above. To do this, take a look at a few different types of nodes in the network based on their relationship to the overall group. How would you expect the centrality metrics would compare between some of these various groups?
+With that, let's investigate some of these measures for the twitter network displayed above. To do this, we'll take a look at a few different types of nodes in the network that we will categorize based on their position relative to all the other points in the network. How would you expect the centrality metrics to differ between these various groups?
 
 <img src="images/node_examples.png">
 
@@ -364,7 +364,7 @@ df.groupby('group').mean()
 
 
 
-As you can see, the central nodes have the highest measures of centrality across the board. Interestingly, the "bridge" nodes, which connect some outside nodes to the center have a fairly high level of betweenness due to their importance in maintaining this intermediate relationship. Additionally, of the center nodes, node 20 appears to be particularly influential given its exceedingly large betweenness centrality.
+As you can see, the central nodes have the highest measures of centrality across the board. Interestingly, the "bridge" nodes, which connect some outside nodes to the center. have a fairly high level of betweenness due to their importance in maintaining this intermediate relationship. Additionally, of all the center nodes, node 20 appears to be particularly influential given its exceedingly large betweenness centrality.
 
 ## Summary
 
