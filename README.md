@@ -33,12 +33,17 @@ G = nx.relabel_nodes(G, dict(zip(G.nodes, range(len(G.nodes)))))
 #Create a matplotlib figure
 fig = plt.figure(figsize=(15,10))
 #Draw the network!
-nx.draw(G, pos=nx.spring_layout(G, random_state=5), with_labels=True,
+nx.draw(G, pos=nx.spring_layout(G), with_labels=True,
         alpha=.8, node_color="#1cf0c7", node_size=700)
 ```
 
+    /Users/alex/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+    The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
+      if not cb.iterable(width):
 
-![png](index_files/index_2_0.png)
+
+
+![png](index_files/index_2_1.png)
 
 
 ## Degree Centrality 
@@ -174,7 +179,7 @@ df.iloc[ex_nodes]
   </thead>
   <tbody>
     <tr>
-      <th>86</th>
+      <td>86</td>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
@@ -182,7 +187,7 @@ df.iloc[ex_nodes]
       <td>islanders</td>
     </tr>
     <tr>
-      <th>87</th>
+      <td>87</td>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
@@ -190,7 +195,7 @@ df.iloc[ex_nodes]
       <td>islanders</td>
     </tr>
     <tr>
-      <th>51</th>
+      <td>51</td>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -198,7 +203,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <th>92</th>
+      <td>92</td>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -206,7 +211,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <th>98</th>
+      <td>98</td>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -214,7 +219,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <th>95</th>
+      <td>95</td>
       <td>0.010204</td>
       <td>0.245537</td>
       <td>0.000000</td>
@@ -222,7 +227,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <th>52</th>
+      <td>52</td>
       <td>0.051020</td>
       <td>0.374665</td>
       <td>0.059331</td>
@@ -230,7 +235,7 @@ df.iloc[ex_nodes]
       <td>bridges</td>
     </tr>
     <tr>
-      <th>96</th>
+      <td>96</td>
       <td>0.010204</td>
       <td>0.304339</td>
       <td>0.000000</td>
@@ -238,7 +243,7 @@ df.iloc[ex_nodes]
       <td>bridges</td>
     </tr>
     <tr>
-      <th>57</th>
+      <td>57</td>
       <td>0.051020</td>
       <td>0.318782</td>
       <td>0.001811</td>
@@ -246,7 +251,7 @@ df.iloc[ex_nodes]
       <td>periphial</td>
     </tr>
     <tr>
-      <th>97</th>
+      <td>97</td>
       <td>0.020408</td>
       <td>0.320958</td>
       <td>0.000326</td>
@@ -254,7 +259,7 @@ df.iloc[ex_nodes]
       <td>periphial</td>
     </tr>
     <tr>
-      <th>74</th>
+      <td>74</td>
       <td>0.153061</td>
       <td>0.452119</td>
       <td>0.054725</td>
@@ -262,7 +267,7 @@ df.iloc[ex_nodes]
       <td>centers</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>0.102041</td>
       <td>0.400174</td>
       <td>0.013053</td>
@@ -270,7 +275,7 @@ df.iloc[ex_nodes]
       <td>centers</td>
     </tr>
     <tr>
-      <th>20</th>
+      <td>20</td>
       <td>0.265306</td>
       <td>0.508329</td>
       <td>0.146951</td>
@@ -324,35 +329,35 @@ df.groupby('group').mean()
   </thead>
   <tbody>
     <tr>
-      <th>bridges</th>
+      <td>bridges</td>
       <td>0.030612</td>
       <td>0.339502</td>
       <td>0.029665</td>
       <td>1.758630e-02</td>
     </tr>
     <tr>
-      <th>centers</th>
+      <td>centers</td>
       <td>0.173469</td>
       <td>0.453541</td>
       <td>0.071576</td>
       <td>1.800014e-01</td>
     </tr>
     <tr>
-      <th>islanders</th>
+      <td>islanders</td>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
       <td>2.505996e-27</td>
     </tr>
     <tr>
-      <th>penisulas</th>
+      <td>penisulas</td>
       <td>0.010204</td>
       <td>0.265230</td>
       <td>0.000000</td>
       <td>2.028979e-03</td>
     </tr>
     <tr>
-      <th>periphial</th>
+      <td>periphial</td>
       <td>0.035714</td>
       <td>0.319870</td>
       <td>0.001069</td>
