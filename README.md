@@ -3,19 +3,19 @@
 
 ## Introduction
 
-Dijkstra's algorithm and other path related searches are essential for establishing a common distance metric within network graphs. With that, one can investigate relationships between nodes. For example, in the context of social networks, one might wonder who is the most influential to various social circles. Alternatively, if you were studying the spread of disease, it would be important to identify key stakeholders for quarantining the disease off from subpopulations. The umbrella term for these metrics is known as centrality. In this lesson, you'll take a look at four measures of centrality and how they can collectively uncover important relationships within networks.
+Dijkstra's algorithm and other path related searches are essential for establishing a common distance metric within network graphs. With that, one can investigate relationships between nodes. For example, in the context of social networks, one might wonder who is most influential to various social circles. Alternatively, if you were studying the spread of disease, it would be important to identify key stakeholders for quarantining the disease off from subpopulations. The umbrella term for these metrics is known as centrality. In this lesson, you'll take a look at four measures of centrality and how they can collectively uncover important relationships within networks.
 
 ## Objectives
 
 You will be able to:
 
-* Understand and explain network centrality and its importance in graph analysis
-* Understand and calculate Degree, Closeness, Betweenness and Eigenvector centrality measures
-* Describe the use case for several centrality measures
+- Describe the use case for the centrality measures 
+- Explain network centrality and its importance in graph analysis 
+- Compare and calculate degree, closeness, betweenness, and eigenvector centrality measures 
 
 ## Centrality
 
-A central concept to graphs is centrality. Take the social network below, created from a subset of twitter data. Some of the nodes are enmeshed in the network, with many connections amongst other nodes. Others, such as node 95, are tied to this central hub, but only weakly through a single connection to the main hub. Two nodes, 86 and 87, aren't even directly tied to the main cluster, and are floating on an island on their own. By quantifying the relationships between nodes, one can better understand the underlying structure of networks.
+An important concept in graphs is centrality. Take the social network below, created from a subset of twitter data. Some of the nodes are enmeshed in the network, with many connections amongst other nodes. Others, such as node 95, are tied to this central hub, but only weakly through a single connection to the main hub. Two nodes, 86 and 87, aren't even directly tied to the main cluster, and are floating on an island on their own. By quantifying the relationships between nodes, one can better understand the underlying structure of networks.
 
 
 ```python
@@ -26,18 +26,18 @@ import matplotlib.pyplot as plt
 
 
 ```python
-#Load the Network from File
-G = nx.read_edgelist("twitter.edges")
-#Simplify the Node Labels
+# Load the Network from File
+G = nx.read_edgelist('twitter.edges')
+# Simplify the Node Labels
 G = nx.relabel_nodes(G, dict(zip(G.nodes, range(len(G.nodes)))))
-#Create a matplotlib figure
+# Create a matplotlib figure
 fig = plt.figure(figsize=(15,10))
-#Draw the network!
+# Draw the network!
 nx.draw(G, pos=nx.spring_layout(G), with_labels=True,
-        alpha=.8, node_color="#1cf0c7", node_size=700)
+        alpha=.8, node_color='#1cf0c7', node_size=700)
 ```
 
-    /Users/alex/anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
+    //anaconda3/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py:579: MatplotlibDeprecationWarning: 
     The iterable function was deprecated in Matplotlib 3.1 and will be removed in 3.3. Use np.iterable instead.
       if not cb.iterable(width):
 
@@ -69,9 +69,9 @@ Next, let's discuss closeness. The closeness of a node is roughly the average di
 
 
 ```python
-#The Closeness for a central node
+# The Closeness for a central node
 print(nx.closeness_centrality(G, 4))
-#The Closeness Metric for an ostracized node
+# The Closeness Metric for an ostracized node
 print(nx.closeness_centrality(G, 86))
 ```
 
@@ -85,9 +85,9 @@ Rather then simply looking at the distance between nodes, betweenness centrality
 
 
 ```python
-#The Betweeness Metric for a central node
+# The Betweeness Metric for a central node
 print(nx.betweenness_centrality(G)[4])
-#The Betweeness Metric for an ostracized node
+# The Betweeness Metric for an ostracized node
 print(nx.betweenness_centrality(G)[86])
 ```
 
@@ -97,14 +97,13 @@ print(nx.betweenness_centrality(G)[86])
 
 ## Eigenvector Centrality
 
-Eigenvector centrality is an iterative algorithm that attempts to measure a nodes relative influence in the network. The underlying motivation is that degree centrality can be refined to incorporate the relative importance of neighboring nodes. In other words, a connection to a central node is more important then a connection to an isolated one. As with the previous measures of centrality, NetworkX makes calculating the eigenvector centrality quite easy.
+Eigenvector centrality is an iterative algorithm that attempts to measure a node's relative influence in the network. The underlying motivation is that degree centrality can be refined to incorporate the relative importance of neighboring nodes. In other words, a connection to a central node is more important then a connection to an isolated one. As with the previous measures of centrality, NetworkX makes calculating the eigenvector centrality quite easy.
 
 
 ```python
-nx.eigenvector_centrality(G)
 # The eigenvector Metric for a central node
 print(nx.eigenvector_centrality(G)[4])
-#The eigenvector Metric for an ostracized node
+# The eigenvector Metric for an ostracized node
 print(nx.eigenvector_centrality(G)[86])
 ```
 
@@ -127,18 +126,18 @@ closeness = nx.closeness_centrality(G)
 betweeness = nx.betweenness_centrality(G)
 eigs = nx.eigenvector_centrality(G)
 df = pd.DataFrame([degrees, closeness, betweeness, eigs]).transpose()
-df.columns = ["degrees", "closeness", "betweeness", "eigs"]
-#Some Nodes to Investigate
-islanders = [86,87]
-penisulas = [51,92,98,95]
-bridges = [52,96]
-periphial = [57,97]
-centers = [74,3,20]
-temp = {"islanders":islanders,
-       "penisulas":penisulas,
-       "bridges":bridges,
-       "periphial":periphial,
-       "centers":centers}
+df.columns = ['degrees', 'closeness', 'betweeness', 'eigs']
+# Some Nodes to Investigate
+islanders = [86, 87]
+penisulas = [51, 92, 98, 95]
+bridges = [52, 96]
+periphial = [57, 97]
+centers = [74, 3, 20]
+temp = {'islanders': islanders,
+       'penisulas': penisulas,
+       'bridges': bridges,
+       'periphial': periphial,
+       'centers': centers}
 node_label_dict = {}
 for label in temp.keys():
     nodes = temp[label]
@@ -179,7 +178,7 @@ df.iloc[ex_nodes]
   </thead>
   <tbody>
     <tr>
-      <td>86</td>
+      <th>86</th>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
@@ -187,7 +186,7 @@ df.iloc[ex_nodes]
       <td>islanders</td>
     </tr>
     <tr>
-      <td>87</td>
+      <th>87</th>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
@@ -195,7 +194,7 @@ df.iloc[ex_nodes]
       <td>islanders</td>
     </tr>
     <tr>
-      <td>51</td>
+      <th>51</th>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -203,7 +202,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <td>92</td>
+      <th>92</th>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -211,7 +210,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <td>98</td>
+      <th>98</th>
       <td>0.010204</td>
       <td>0.271794</td>
       <td>0.000000</td>
@@ -219,7 +218,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <td>95</td>
+      <th>95</th>
       <td>0.010204</td>
       <td>0.245537</td>
       <td>0.000000</td>
@@ -227,7 +226,7 @@ df.iloc[ex_nodes]
       <td>penisulas</td>
     </tr>
     <tr>
-      <td>52</td>
+      <th>52</th>
       <td>0.051020</td>
       <td>0.374665</td>
       <td>0.059331</td>
@@ -235,7 +234,7 @@ df.iloc[ex_nodes]
       <td>bridges</td>
     </tr>
     <tr>
-      <td>96</td>
+      <th>96</th>
       <td>0.010204</td>
       <td>0.304339</td>
       <td>0.000000</td>
@@ -243,7 +242,7 @@ df.iloc[ex_nodes]
       <td>bridges</td>
     </tr>
     <tr>
-      <td>57</td>
+      <th>57</th>
       <td>0.051020</td>
       <td>0.318782</td>
       <td>0.001811</td>
@@ -251,7 +250,7 @@ df.iloc[ex_nodes]
       <td>periphial</td>
     </tr>
     <tr>
-      <td>97</td>
+      <th>97</th>
       <td>0.020408</td>
       <td>0.320958</td>
       <td>0.000326</td>
@@ -259,7 +258,7 @@ df.iloc[ex_nodes]
       <td>periphial</td>
     </tr>
     <tr>
-      <td>74</td>
+      <th>74</th>
       <td>0.153061</td>
       <td>0.452119</td>
       <td>0.054725</td>
@@ -267,7 +266,7 @@ df.iloc[ex_nodes]
       <td>centers</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>0.102041</td>
       <td>0.400174</td>
       <td>0.013053</td>
@@ -275,7 +274,7 @@ df.iloc[ex_nodes]
       <td>centers</td>
     </tr>
     <tr>
-      <td>20</td>
+      <th>20</th>
       <td>0.265306</td>
       <td>0.508329</td>
       <td>0.146951</td>
@@ -329,35 +328,35 @@ df.groupby('group').mean()
   </thead>
   <tbody>
     <tr>
-      <td>bridges</td>
+      <th>bridges</th>
       <td>0.030612</td>
       <td>0.339502</td>
       <td>0.029665</td>
       <td>1.758630e-02</td>
     </tr>
     <tr>
-      <td>centers</td>
+      <th>centers</th>
       <td>0.173469</td>
       <td>0.453541</td>
       <td>0.071576</td>
       <td>1.800014e-01</td>
     </tr>
     <tr>
-      <td>islanders</td>
+      <th>islanders</th>
       <td>0.010204</td>
       <td>0.010204</td>
       <td>0.000000</td>
       <td>2.505996e-27</td>
     </tr>
     <tr>
-      <td>penisulas</td>
+      <th>penisulas</th>
       <td>0.010204</td>
       <td>0.265230</td>
       <td>0.000000</td>
       <td>2.028979e-03</td>
     </tr>
     <tr>
-      <td>periphial</td>
+      <th>periphial</th>
       <td>0.035714</td>
       <td>0.319870</td>
       <td>0.001069</td>
@@ -373,4 +372,4 @@ As you can see, the central nodes have the highest measures of centrality across
 
 ## Summary
 
-In this lesson you investigated concepts of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweenness and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
+In this lesson you investigated the concept of centrality in networks. Specifically, you took a look at four measures of centrality: degree, closeness, betweenness, and eigenvector centrality. From here, you'll further investigate these concepts and their interpretation in the context of a real world social network.
